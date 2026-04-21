@@ -2,6 +2,8 @@
 <html>
 <head>
     <title>NEET Countdown</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#1e3a8a">
 
     <style>
         body {
@@ -99,6 +101,10 @@
     }, 1000);
 
     changeQuote();
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("sw.js")
+        .then(() => console.log("SW registered"));
+}
 </script>
 
 </body>
