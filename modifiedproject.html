@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>NEET Countdown</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #1e3a8a, #0f172a);
+            color: white;
+            text-align: center;
+        }
+        .container {
+            height: 100vh;              /* full screen height */
+            display: flex;              /* turn on flexbox */
+            justify-content: center;    /* horizontal center */
+            align-items: center;        /* vertical center */
+            flex-direction: column;     /* stack items vertically */
+            text-align: center;
+         }
+
+       
+
+        h1 {
+            font-size: 40px;
+        }
+
+        #timer {
+            font-size: 50px;
+            margin: 20px 0;
+            font-weight: bold;
+        }
+
+        .quote {
+            font-size: 18px;
+            opacity: 0.8;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            background: #22c55e;
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #16a34a;
+        }
+    </style>
+</head>
+
+<body >
+
+<div class="container">
+    <h1>Time left in order  ⏳</h1>
+    <h2>to achieve your goal.. </h2>
+
+    <div id="timer"></div>
+
+    <p class="quote" id="quote"></p>
+
+    <button onclick="changeQuote()">Motivate Me</button>
+</div>
+
+<script>
+    let examDate = new Date("May 5, 2026 00:00:00").getTime();
+
+    let quotes = [
+        "Stay focused. You're closer than you think.",
+        "Every hour matters now.",
+        "Consistency beats talent.",
+        "You’ve already come so far.",
+        "Make yourself proud."
+    ];
+
+    function changeQuote() {
+        let random = Math.floor(Math.random() * quotes.length);
+        document.getElementById("quote").innerText = quotes[random];
+    }
+
+    setInterval(function() {
+        let now = new Date().getTime();
+        let distance = examDate - now;
+
+        let days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        document.getElementById("timer").innerHTML =
+            days + "d " + hours + "h " + minutes + "m " + seconds + "s";
+
+        if (distance < 0) {
+            document.getElementById("timer").innerHTML = "Go ace it 🔥";
+        }
+    }, 1000);
+
+    changeQuote();
+</script>
+
+</body>
+</html>
